@@ -1,0 +1,2 @@
+# Conector oficial para extraer los datos de la base de datos MySQL local
+mysql-connector-python>=8.0.30
