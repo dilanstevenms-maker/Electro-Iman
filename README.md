@@ -19,7 +19,7 @@ A partir del **campo magnético deseado (Teslas)** y el **espacio disponible**, 
 ## Requisitos e Instalación
 1. Clonar el repositorio:
    git clone [https://github.com/dilanstevenms-maker/Electro-Iman.git](https://github.com/dilanstevenms-maker/Electro-Iman.git)
-   2. Instalar las dependencias: `pip install -r requirements.txt`.
+2. Instalar las dependencias: `pip install -r requirements.txt`.
 3. Ejecutar el script `data/esquema_db.sql` en MySQL Workbench para levantar los datos.
 4. Ajustar las credenciales locales en `src/db/conexion.py`
 ## Autores
