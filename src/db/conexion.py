@@ -6,9 +6,9 @@ def conectar_db():
     try:
         conexion = mysql.connector.connect(
             user='root',
-            password='12345',
+            password='WLSn321R',
             host='localhost',
-            port='3307',
+            port=3306,
             database='electroiman_db' 
         )
         if conexion.is_connected():
