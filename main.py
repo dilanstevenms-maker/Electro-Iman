@@ -1,49 +1,91 @@
-from interfaz.cli import (
-    mostrar_error,
-    mostrar_resultado,
-    preguntar_si_continuar,
-    solicitar_parametros,
-)
-from src.db.conexion import obtener_catalogo_cables
-from src.errores import ElectroimanError
-from src.modelos import Cable
-from src.optimizador import optimizar_solenoide
+"""Punto de entrada principal para ELECTROIMÁN STUDIO."""
+
+import os
+import sys
+
+# Garantizar que las rutas del proyecto y subdirectorio estén en sys.path
+directorio_actual = os.path.dirname(os.path.abspath(__file__))
+directorio_padre = os.path.dirname(directorio_actual)
+
+for ruta in (directorio_actual, directorio_padre):
+    if ruta not in sys.path:
+        sys.path.insert(0, ruta)
+
+from PyQt6.QtGui import QFont
+from PyQt6.QtWidgets import QApplication
+from ui import MainWindow
+
+
+def cargar_estilos_qss(app: QApplication):
+    """Carga de forma robusta la hoja de estilos styles.qss."""
+    rutas_candidatas = [
+        os.path.join(directorio_actual, "styles.qss"),
+        os.path.join(directorio_actual, "interfaz", "styles.qss"),
+        os.path.join(directorio_padre, "styles.qss"),
+    ]
+    for ruta in rutas_candidatas:
+        if os.path.exists(ruta):
+            try:
+                with open(ruta, "r", encoding="utf-8") as f:
+                    app.setStyleSheet(f.read())
+                return
+            except Exception as e:
+                print(f"[Aviso] Error leyendo {ruta}: {e}")
+
+
+def ejecutar_modo_cli():
+    """Modo consola por terminal interactiva."""
+    try:
+        from interfaz.cli import (
+            mostrar_error,
+            mostrar_resultado,
+            preguntar_si_continuar,
+            solicitar_parametros,
+        )
+        from src.db.database_manager import DatabaseManager
+        from src.errores import ElectroimanError
+        from src.optimizador import optimizar_solenoide
+
+        db = DatabaseManager.obtener_instancia()
+        catalogo = db.obtener_calibres()
+        print("Iniciando sesión interactiva por consola (modo CLI)...")
+        while True:
+            try:
+                parametros = solicitar_parametros()
+                if parametros is None:
+                    break
+                campo_b, longitud_m, diametro_m, espesor_m = parametros
+                res = optimizar_solenoide(campo_b, longitud_m, diametro_m, espesor_m, catalogo)
+                mostrar_resultado(res)
+            except (ElectroimanError, ValueError) as err:
+                mostrar_error(err)
+            except (KeyboardInterrupt, EOFError):
+                break
+            if not preguntar_si_continuar():
+                break
+    except Exception as e:
+        print(f"[Error CLI] {e}")
 
 
 def main():
-    filas = obtener_catalogo_cables()
-    if not filas:
-        mostrar_error(
-            "No se pudo cargar el catálogo AWG. Revisa que MySQL esté encendido "
-            "(puerto 3306) y que hayas ejecutado data/esquema.sql."
-        )
+    if "--cli" in sys.argv:
+        ejecutar_modo_cli()
         return
 
-    catalogo = [Cable.desde_diccionario(fila) for fila in filas]
+    app = QApplication(sys.argv)
+    app.setApplicationName("ELECTROIMÁN STUDIO")
+    app.setApplicationDisplayName("ELECTROIMÁN STUDIO — Diseño de Electroimanes")
+    app.setOrganizationName("Carolina Molina y Dilan Muñoz")
 
-    while True:
-        try:
-            parametros = solicitar_parametros()
-            if parametros is None:
-                print("\nConsulta cancelada.")
-                break
+    # Establecer tipografía predeterminada para evitar avisos de point size negativo
+    app.setFont(QFont("Segoe UI", 10))
 
-            campo_b, longitud_m, diametro_m, espesor_m = parametros
-            resultado = optimizar_solenoide(campo_b, longitud_m, diametro_m, espesor_m, catalogo)
-            mostrar_resultado(resultado)
+    cargar_estilos_qss(app)
 
-        except (ElectroimanError, ValueError) as e:
-            mostrar_error(e)
-            print("\nPuedes ajustar los parámetros para intentar con otra configuración.")
+    ventana = MainWindow()
+    ventana.show()
 
-        except (KeyboardInterrupt, EOFError):
-            print("\n\nSesión finalizada por el usuario.")
-            break
-
-        print()
-        if not preguntar_si_continuar():
-            print("\n¡Gracias por usar la herramienta! Hasta luego.\n")
-            break
+    sys.exit(app.exec())
 
 
 if __name__ == "__main__":

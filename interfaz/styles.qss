@@ -1,0 +1,340 @@
+/* ==========================================================================
+   ELECTROIMÁN STUDIO — HOJA DE ESTILOS QSS (GLASSMORPHISM CÓSMICO)
+   Paleta: Púrpuras y violetas oscuros profundos con verde menta y cian eléctrico.
+   ========================================================================== */
+
+/* --- Configuración Global --- */
+QWidget {
+    color: #FFFFFF;
+    font-family: "Segoe UI", "Inter", Arial, sans-serif;
+    font-size: 13px;
+    background: transparent;
+}
+
+QMainWindow {
+    background-color: #090A15;
+}
+
+/* --- Tarjetas Contenedoras Glassmorphic (Vidrio Esmerilado) --- */
+QFrame.GlassCard {
+    background-color: rgba(22, 17, 44, 0.68);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 16px;
+}
+
+QFrame.GlassCardHero {
+    background-color: rgba(26, 20, 52, 0.75);
+    border: 1px solid rgba(0, 245, 160, 0.28);
+    border-radius: 18px;
+}
+
+QFrame.GlassMetricCard {
+    background-color: rgba(18, 14, 38, 0.70);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+}
+
+/* --- Títulos de Secciones en Verde Menta / Cian Suave --- */
+QLabel.SectionTitle {
+    color: #00F5A0;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: transparent;
+}
+
+QLabel.HeroTitle {
+    color: #00F5A0;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    background: transparent;
+}
+
+QLabel.SubText {
+    color: #9EA3C0;
+    font-size: 12px;
+    background: transparent;
+}
+
+/* --- Botón Primario Gigante (Inicio: INICIAR CONSULTA →) --- */
+QPushButton#BtnIniciarConsulta {
+    background: qlineargradient(
+        spread: pad,
+        x1: 0, y1: 0, x2: 1, y2: 0,
+        stop: 0 #D4FFF2,
+        stop: 0.5 #84FFDA,
+        stop: 1 #00F5A0
+    );
+    color: #080D1A;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    border: none;
+    border-radius: 26px;
+    padding: 14px 38px;
+    min-height: 24px;
+}
+
+QPushButton#BtnIniciarConsulta:hover {
+    background: qlineargradient(
+        spread: pad,
+        x1: 0, y1: 0, x2: 1, y2: 0,
+        stop: 0 #FFFFFF,
+        stop: 0.5 #A8FFE7,
+        stop: 1 #2BFFA8
+    );
+}
+
+QPushButton#BtnIniciarConsulta:pressed {
+    background: #00D9F5;
+    padding-top: 15px;
+    padding-bottom: 13px;
+}
+
+/* --- Botón de Acción Principal (CALCULAR COMBINACIÓN) --- */
+QPushButton#BtnCalcular {
+    background: qlineargradient(
+        spread: pad,
+        x1: 0, y1: 0, x2: 1, y2: 0,
+        stop: 0 #00F5A0,
+        stop: 1 #00D9F5
+    );
+    color: #070B14;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 22px;
+    padding: 12px 32px;
+    min-height: 20px;
+}
+
+QPushButton#BtnCalcular:hover {
+    background: qlineargradient(
+        spread: pad,
+        x1: 0, y1: 0, x2: 1, y2: 0,
+        stop: 0 #24FFB1,
+        stop: 1 #30E3FF
+    );
+}
+
+QPushButton#BtnCalcular:pressed {
+    background: #00C782;
+    padding-top: 13px;
+    padding-bottom: 11px;
+}
+
+/* --- Botón Secundario Minimalista (Volver a Parámetros) --- */
+QPushButton#BtnVolver {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #E2E6F5;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+QPushButton#BtnVolver:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #00F5A0;
+    border-color: rgba(0, 245, 160, 0.4);
+}
+
+QPushButton#BtnVolver:pressed {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* --- Botón de Header / Icono --- */
+QPushButton#BtnHeaderAction {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #9EA3C0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+QPushButton#BtnHeaderAction:hover {
+    background-color: rgba(0, 245, 160, 0.12);
+    color: #00F5A0;
+    border-color: rgba(0, 245, 160, 0.35);
+}
+
+/* --- Deslizadores Neón (QSlider Horizontal) --- */
+QSlider::groove:horizontal {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.10);
+    border-radius: 2px;
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(
+        spread: pad,
+        x1: 0, y1: 0, x2: 1, y2: 0,
+        stop: 0 #00F5A0,
+        stop: 1 #00D9F5
+    );
+    border-radius: 2px;
+}
+
+QSlider::handle:horizontal {
+    background: #FFFFFF;
+    border: 2px solid #00F5A0;
+    width: 16px;
+    height: 16px;
+    margin-top: -6px;
+    margin-bottom: -6px;
+    border-radius: 8px;
+}
+
+QSlider::handle:horizontal:hover {
+    background: #00F5A0;
+    border: 2px solid #FFFFFF;
+}
+
+QSlider::handle:horizontal:pressed {
+    background: #00D9F5;
+    border: 2px solid #FFFFFF;
+}
+
+/* --- Cajitas de Valor Numérico de los Sliders --- */
+QLabel.SliderValueBadge {
+    background-color: rgba(14, 10, 30, 0.75);
+    color: #00F5A0;
+    border: 1px solid rgba(0, 245, 160, 0.25);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 65px;
+}
+
+/* --- Menú Desplegable (QComboBox) --- */
+QComboBox {
+    background-color: rgba(14, 10, 30, 0.75);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+QComboBox:hover {
+    border-color: rgba(0, 245, 160, 0.4);
+}
+
+QComboBox:focus {
+    border: 1px solid #00F5A0;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 24px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: rgba(14, 10, 30, 0.96);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 6px;
+    selection-background-color: rgba(0, 245, 160, 0.25);
+    selection-color: #00F5A0;
+}
+
+/* --- Badge de Estado / MySQL --- */
+QFrame.StatusBadge {
+    background-color: rgba(0, 245, 160, 0.10);
+    border: 1px solid rgba(0, 245, 160, 0.35);
+    border-radius: 10px;
+    padding: 4px 10px;
+}
+
+QFrame.StatusBadgeText {
+    color: #00F5A0;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* --- Badge de ★ ÓPTIMO --- */
+QLabel#BadgeOptimo {
+    background-color: rgba(0, 245, 160, 0.15);
+    color: #00F5A0;
+    border: 1px solid rgba(0, 245, 160, 0.45);
+    border-radius: 10px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+/* --- Tablas Glassmorphism (QTableWidget) --- */
+QTableWidget {
+    background-color: rgba(14, 10, 30, 0.65);
+    alternate-background-color: rgba(22, 16, 44, 0.45);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    gridline-color: rgba(255, 255, 255, 0.04);
+    selection-background-color: rgba(0, 245, 160, 0.18);
+    selection-color: #00F5A0;
+}
+
+QHeaderView::section {
+    background-color: rgba(20, 15, 42, 0.88);
+    color: #00F5A0;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 10px;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- Barra de Factor de Carga Térmica --- */
+QProgressBar#BarraTermica {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: none;
+    border-radius: 4px;
+    height: 8px;
+    text-align: center;
+}
+
+QProgressBar#BarraTermica::chunk {
+    background: qlineargradient(
+        spread: pad,
+        x1: 0, y1: 0, x2: 1, y2: 0,
+        stop: 0 #00F5A0,
+        stop: 1 #00D9F5
+    );
+    border-radius: 4px;
+}
+
+/* --- Scrollbars --- */
+QScrollBar:vertical {
+    background: transparent;
+    width: 6px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+    min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #00F5A0;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
